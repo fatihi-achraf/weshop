@@ -1,0 +1,7 @@
+parameters:
+#    weshop_message.example.class: Weshop\Bundle\MessageBundle\Example
+
+services:
+#    weshop_message.example:
+#        class: %weshop_message.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

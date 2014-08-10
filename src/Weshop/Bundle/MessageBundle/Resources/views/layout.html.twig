@@ -1,0 +1,65 @@
+{% extends 'SyliusWebBundle:Frontend:layout.html.twig' %}
+
+
+
+  {% block stylesheets %}
+  {{ parent() }}
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"/>
+<link href="{{ asset("message/plugins/font-awesome/css/font-awesome.min.css")}}" rel="stylesheet" type="text/css"/>
+<link href="{{ asset("message/plugins/bootstrap/css/bootstrap.min.css")}}" rel="stylesheet" type="text/css"/>
+<link href="{{ asset("message/plugins/uniform/css/uniform.default.css")}}" rel="stylesheet" type="text/css"/>
+<!-- END GLOBAL MANDATORY STYLES -->
+<!-- BEGIN PAGE LEVEL STYLES -->
+<link href="{{ asset("message/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css")}}" rel="stylesheet" type="text/css"/>
+<link href="{{ asset("message/plugins/fancybox/source/jquery.fancybox.css")}}" rel="stylesheet"/>
+<!-- BEGIN:File Upload Plugin CSS files-->
+<link href="{{ asset("message/plugins/jquery-file-upload/blueimp-gallery/blueimp-gallery.min.css")}}" rel="stylesheet"/>
+<link href="{{ asset("message/plugins/jquery-file-upload/css/jquery.fileupload.css")}}" rel="stylesheet"/>
+<link href="{{ asset("message/plugins/jquery-file-upload/css/jquery.fileupload-ui.css")}}" rel="stylesheet"/>
+<!-- END:File Upload Plugin CSS files-->
+<!-- END PAGE LEVEL STYLES -->
+<!-- BEGIN THEME STYLES -->
+<link href="{{ asset("message/css/style-metronic.css")}}" rel="stylesheet" type="text/css"/>
+<link href="{{ asset("message/css/style.css")}}" rel="stylesheet" type="text/css"/>
+<link href="{{ asset("message/css/style-responsive.css")}}" rel="stylesheet" type="text/css"/>
+<link href="{{ asset("message/css/plugins.css")}}" rel="stylesheet" type="text/css"/>
+<link href="{{ asset("message/css/themes/default.css" )}}"rel="stylesheet" type="text/css" id="style_color"/>
+<link href="{{ asset("message/css/pages/inbox.css")}}" rel="stylesheet" type="text/css"/>
+<link href="{{ asset("message/css/custom.css")}}" rel="stylesheet" type="text/css"/>
+  {% endblock %}
+
+{% block main %}
+
+<div class="row inbox">
+                <div class="col-md-2">
+                    <ul class="inbox-nav margin-bottom-10">
+                        <li class="compose-btn">
+                            <a href="{{ url('fos_message_thread_new') }}" data-title="Compose" class="btn green">
+                                <i class="fa fa-edit"></i> Compose
+                            </a>
+                        </li>
+                        <li class="inbox">
+                            <a href="{{ url('fos_message_inbox') }}" class="btn" data-title="Inbox">{% trans from 'FOSMessageBundle' %}inbox{% endtrans %}</a>
+                            <b></b>
+                        </li>
+                        <li class="sent">
+                            <a class="btn" href="{{ url('fos_message_sent') }}" data-title="Sent">{% trans from 'FOSMessageBundle' %}sent{% endtrans %}
+                            </a>
+                            <b></b>
+                        </li>
+                        <li class="trash">
+                            <a class="btn" href="{{ url('fos_message_deleted') }}" data-title="Trash">
+                                {% trans from 'FOSMessageBundle' %}deleted{% endtrans %}
+                            </a>
+                            <b></b>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-10">
+                    {% block fos_message_content %}{% endblock %}
+                </div>
+            </div>
+
+
+{% endblock %}
+

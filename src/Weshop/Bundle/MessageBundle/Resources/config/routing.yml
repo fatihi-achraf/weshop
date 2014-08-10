@@ -1,0 +1,3 @@
+# weshop_message_homepage:
+#     path:     /hello/{name}
+#     defaults: { _controller: WeshopMessageBundle:Default:index }
