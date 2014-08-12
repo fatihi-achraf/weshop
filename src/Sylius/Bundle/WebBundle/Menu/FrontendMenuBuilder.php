@@ -23,6 +23,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Intl\Intl;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 use Symfony\Component\Translation\TranslatorInterface;
+use FOS\MessageBundle\Provider\ProviderInterface;
 
 /**
  * Frontend menu builder.
@@ -59,6 +60,9 @@ class FrontendMenuBuilder extends MenuBuilder
      */
     protected $currencyHelper;
 
+
+    protected $provider;
+
     /**
      * Constructor.
      *
@@ -79,7 +83,8 @@ class FrontendMenuBuilder extends MenuBuilder
         CurrencyProviderInterface $currencyProvider,
         RepositoryInterface       $taxonomyRepository,
         CartProviderInterface     $cartProvider,
-        CurrencyHelper            $currencyHelper
+        CurrencyHelper            $currencyHelper,
+        ProviderInterface         $provider
     )
     {
         parent::__construct($factory, $securityContext, $translator, $eventDispatcher);
@@ -88,6 +93,7 @@ class FrontendMenuBuilder extends MenuBuilder
         $this->taxonomyRepository = $taxonomyRepository;
         $this->cartProvider = $cartProvider;
         $this->currencyHelper = $currencyHelper;
+        $this->provider=$provider;
     }
 
     /**
@@ -137,8 +143,11 @@ class FrontendMenuBuilder extends MenuBuilder
                 $menu->addChild('account', array(
                     'route' => 'sylius_account_homepage',
                     'linkAttributes' => array('title' => $this->translate('sylius.frontend.menu.main.account')),
-                    'labelAttributes' => array('icon' => 'icon-user icon-large', 'iconOnly' => false)
-                ))->setLabel($this->translate('sylius.frontend.menu.main.account'));
+                    'labelAttributes' => array('icon' => 'icon-user icon-large', 'iconOnly' => false),
+                    'extras' => array('safe_label'=>true)
+
+
+                ))->setLabel('Mon compte <span class="badge">'.$this->provider->getNbUnreadMessages().'</span>');
             }
 
             $menu->addChild('logout', array(
