@@ -3,8 +3,6 @@
 {% block fos_message_content %}
 
 
-
-<div class="col-md-10">
                     <div class="inbox-header">
                         <h1 class="pull-left">View Message</h1>
                     </div>
@@ -21,25 +19,26 @@
 {% for message in thread.messages %}
 <div class="inbox-view-info">
     <div class="row">
-        <div class="col-md-7">
-            <span>
-               {{ message.sender|e }}
+        <div class="col-md-12">
+            <i class="fa fa-user"></i>
+            <span class="bold">
+                 {{ message.sender.getFullName() }}
             </span>
-
+            <span>
+                 &lt;{{ message.sender|e }}&gt;
+            </span>
+             à
+            <span class="bold">
+                 {{ app.user.getFullName() }}
+            </span>
+             le {{ message.createdAt|date }}
         </div>
-        <div class="col-md-5 inbox-info-btn">
-            <div class="btn-group">
-                {{ message.createdAt|date }}
-                </div>
-                </div>
-            </div>
-        </div>
-        <div class="inbox-view">
-           {{ message.body }}
-        </div>
-        <hr>
-       </div>
-                
+        
+    </div>
+</div>
+       <div class="inbox-view">
+           {{ message.body| raw }}
+        </div>         
 
 {% endfor %}
 

@@ -145,10 +145,17 @@ class FrontendMenuBuilder extends MenuBuilder
                     'linkAttributes' => array('title' => $this->translate('sylius.frontend.menu.main.account')),
                     'labelAttributes' => array('icon' => 'icon-user icon-large', 'iconOnly' => false),
                     'extras' => array('safe_label'=>true)
-
-
-                ))->setLabel('Mon compte <span class="badge">'.$this->provider->getNbUnreadMessages().'</span>');
+                ))->setLabel('Mon compte');
             }
+
+            $menu->addChild('message', array(
+                    'route' => 'fos_message_inbox',
+                    'linkAttributes' => array('title' => "Message"),
+                    'labelAttributes' => array('icon' => 'icon-envelope icon-large', 'iconOnly' => false),
+                    'extras' => array('safe_label'=>true)
+                ))->setLabel('Message <span class="badge">'.$this->provider->getNbUnreadMessages().'</span>');
+
+
 
             $menu->addChild('logout', array(
                 'route' => 'fos_user_security_logout',
