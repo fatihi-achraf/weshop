@@ -5,13 +5,11 @@
   {% block stylesheets %}
   {{ parent() }}
   <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&amp;subset=all" rel="stylesheet" type="text/css"/>
-<link href="{{ asset("message/plugins/font-awesome/css/font-awesome.min.css")}}" rel="stylesheet" type="text/css"/>
-<link href="{{ asset("message/plugins/bootstrap/css/bootstrap.min.css")}}" rel="stylesheet" type="text/css"/>
 <link href="{{ asset("message/plugins/uniform/css/uniform.default.css")}}" rel="stylesheet" type="text/css"/>
 <!-- END GLOBAL MANDATORY STYLES -->
 <!-- BEGIN PAGE LEVEL STYLES -->
 <link href="{{ asset("message/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css")}}" rel="stylesheet" type="text/css"/>
-<link href="{{ asset("message/plugins/fancybox/source/jquery.fancybox.css")}}" rel="stylesheet"/>
+
 <!-- BEGIN:File Upload Plugin CSS files-->
 <link href="{{ asset("message/plugins/jquery-file-upload/blueimp-gallery/blueimp-gallery.min.css")}}" rel="stylesheet"/>
 <link href="{{ asset("message/plugins/jquery-file-upload/css/jquery.fileupload.css")}}" rel="stylesheet"/>
@@ -19,20 +17,12 @@
 <!-- END:File Upload Plugin CSS files-->
 <!-- END PAGE LEVEL STYLES -->
 <!-- BEGIN THEME STYLES -->
-<link href="{{ asset("message/css/style-metronic.css")}}" rel="stylesheet" type="text/css"/>
-<link href="{{ asset("message/css/style.css")}}" rel="stylesheet" type="text/css"/>
-<link href="{{ asset("message/css/style-responsive.css")}}" rel="stylesheet" type="text/css"/>
 <link href="{{ asset("message/css/plugins.css")}}" rel="stylesheet" type="text/css"/>
 <link href="{{ asset("message/css/themes/default.css" )}}"rel="stylesheet" type="text/css" id="style_color"/>
 <link href="{{ asset("message/css/pages/inbox.css")}}" rel="stylesheet" type="text/css"/>
-<link href="{{ asset("message/css/custom.css")}}" rel="stylesheet" type="text/css"/>
 
   {% endblock %}
-  {% block js %}
-  {{ parent() }}
-    <script src="{{ asset("message/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js")}}" type="text/javascript"></script>
-    <script src="{{ asset("message/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js")}}" type="text/javascript"></script>
-  {% endblock %}
+
 
 
 {% block main %}
@@ -69,4 +59,19 @@
 
 
 {% endblock %}
+ {% block javascripts %}
+ {{ parent() }}
+  <script src="{{ asset("message/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js") }}" type="text/javascript"></script>
+<script src="{{ asset("message/plugins/jquery.blockui.min.js") }}" type="text/javascript"></script>
+<script src="{{ asset("message/plugins/jquery.cokie.min.js") }}" type="text/javascript"></script>
+<script src="{{ asset("message/plugins/uniform/jquery.uniform.min.js") }}" type="text/javascript"></script>
+<script src="{{ asset("message/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js") }}" type="text/javascript"></script>
+<script src="{{ asset("message/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js") }}" type="text/javascript"></script>
+
+
+<!-- END: Page level plugins -->
+<script src="{{ asset("message/scripts/core/app.js") }}"></script>
+<script src="{{ asset("message/scripts/custom/inbox.js") }}"></script>
+ {% endblock %}
+
 

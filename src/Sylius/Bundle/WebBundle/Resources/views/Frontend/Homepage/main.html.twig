@@ -1,11 +1,125 @@
 {% extends 'SyliusWebBundle:Frontend:layout.html.twig' %}
 
-{% block content %}
-<div class="jumbotron">
-    <h1>{{ 'sylius.homepage.splash.headline'|trans }}</h1>
-    <p class="lead">{{ 'sylius.homepage.splash.subheadline'|trans }}</p>
-</div>
+{% block main %}
+    <!-- BEGIN SLIDER -->
+    <div class="page-slider margin-bottom-35">
+      <!--LayerSlider begin-->
+      {% include 'SyliusWebBundle:Frontend:slide.html.twig' %}
+    <!-- END SLIDER -->
+    {% block content %}
+        <div class="main">
+      <div class="container">
+        <!-- BEGIN SALE PRODUCT & NEW ARRIVALS -->
+        <div class="row margin-bottom-40">
+          <!-- BEGIN SALE PRODUCT -->
+          <div class="col-md-12 sale-product">
+            <h2>New Arrivals</h2>
+            <div class="bxslider-wrapper">
+              <ul class="bxslider" data-slides-phone="1" data-slides-tablet="2" data-slides-desktop="5" data-slide-margin="15">
+                {{ render(url('sylius_partial_product_latest', {'limit': 9, 'template': 'SyliusWebBundle:Frontend/Product:latest.html.twig'})) }}
+              </ul>
+            </div>
+          </div>
+          <!-- END SALE PRODUCT -->
+        </div>
+        <!-- END SALE PRODUCT & NEW ARRIVALS -->
 
-{{ render(url('sylius_partial_product_latest', {'limit': 9, 'template': 'SyliusWebBundle:Frontend/Product:latest.html.twig'})) }}
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40 ">
+          <!-- BEGIN SIDEBAR -->
+          {% include 'SyliusWebBundle:Frontend:navigation.html.twig' %}
+          <!-- END SIDEBAR -->
+          <!-- BEGIN CONTENT -->
+          <div class="col-md-9 col-sm-8">
+            <h2>Three items</h2>
+            <div class="bxslider-wrapper">
+              <ul class="bxslider" data-slides-phone="1" data-slides-tablet="2" data-slides-desktop="3" data-slide-margin="15">
+                {% for i in 0..6 %}
+                <li>
+                  <div class="product-item">
+                    <div class="pi-img-wrapper">
+                      <img src="{{ asset("template/temp/products/k1.jpg")}}" class="img-responsive" alt="Berry Lace Dress">
+                      <div>
+                        <a href="{{ asset("template/temp/products/k1.jpg")}}" class="btn btn-default fancybox-button">Zoom</a>
+                        <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                      </div>
+                    </div>
+                    <h3><a href="item.html">Berry Lace Dress</a></h3>
+                    <div class="pi-price">$29.00</div>
+                    <a href="#" class="btn btn-default add2cart">Add to cart</a>
+                    <div class="sticker sticker-new"></div>
+                  </div>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+          <!-- END CONTENT -->
+        </div>
+        <!-- END SIDEBAR & CONTENT -->
+
+        <!-- BEGIN TWO PRODUCTS & PROMO -->
+        <div class="row margin-bottom-35 ">
+          <!-- BEGIN TWO PRODUCTS -->
+          <div class="col-md-6 two-items-bottom-items">
+            <h2>Two items</h2>
+            <div class="bxslider-wrapper">
+              <ul class="bxslider" data-slides-phone="1" data-slides-tablet="2" data-slides-desktop="2" data-slide-margin="15">
+                {% for i in 0..7 %}
+                <li>
+                  <div class="product-item">
+                    <div class="pi-img-wrapper">
+                      <img src="{{ asset("template/temp/products/k4.jpg")}}" class="img-responsive" alt="Berry Lace Dress">
+                      <div>
+                        <a href="{{ asset("template/temp/products/k4.jpg")}}" class="btn btn-default fancybox-button">Zoom</a>
+                        <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                      </div>
+                    </div>
+                    <h3><a href="item.html">Berry Lace Dress</a></h3>
+                    <div class="pi-price">$29.00</div>
+                    <a href="#" class="btn btn-default add2cart">Add to cart</a>
+                  </div>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+          <!-- END TWO PRODUCTS -->
+          <!-- BEGIN PROMO -->
+          <div class="col-md-6">
+            <div class="content-slider">
+              <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                  <li data-target="#myCarousel" data-slide-to="1"></li>
+                  <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                  <div class="item active">
+                    <img src="{{ asset("template/temp/index-sliders/slide1.jpg")}}" class="img-responsive" alt="Berry Lace Dress">
+                  </div>
+                  <div class="item">
+                    <img src="{{ asset("template/temp/index-sliders/slide2.jpg")}}" class="img-responsive" alt="Berry Lace Dress">
+                  </div>
+                  <div class="item">
+                    <img src="{{ asset("template/temp/index-sliders/slide3.jpg")}}" class="img-responsive" alt="Berry Lace Dress">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- END PROMO -->
+        </div>        
+        <!-- END TWO PRODUCTS & PROMO -->
+      </div>
+    </div>
+
+    
+      {# render(url('sylius_partial_product_latest', {'limit': 9, 'template': 'SyliusWebBundle:Frontend/Product:latest.html.twig'})) #}
+
+    {% endblock %}
+
 
 {% endblock %}
+

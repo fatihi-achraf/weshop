@@ -1,12 +1,23 @@
-<h4>{{ 'sylius.newest'|trans }}</h4>
 
-<ul>
-    {% for product in products %}
-        <li>
-            <a href="{{ path(product) }}" class="btn btn-link">
-                <img class="thumbnail" src="{{ product.image ? product.image.path|imagine_filter('sylius_small') : 'http://placehold.it/50x40' }}" alt="{{ product.name }}" />
-                <h4>{{ product.name }}</h4>
-            </a>
-        </li>
-    {% endfor %}
-</ul>
+  <div class="row margin-bottom-40">
+          <div class="col-md-12 col-sm-12 bxslider-wrapper bxslider-wrapper-similar-products">
+<h4>{{ 'sylius.newest'|trans }}</h4>
+ <ul class="bxslider bxslider-similar-products" data-slides-phone="1" data-slides-tablet="2" data-slides-desktop="4" data-slide-margin="20">
+{% for product in products %}
+<li>
+                  <div class="product-item">
+                    <div class="pi-img-wrapper">
+                      <img src="{{ product.image ? product.image.path|imagine_filter('sylius_medium') : 'http://placehold.it/200x200' }}" class="img-responsive" alt="{{ product.name }}">
+                      <div>
+                        <a href="{{ product.image ? product.image.path|imagine_filter('sylius_large') : 'http://placehold.it/50x40' }}" class="btn btn-default fancybox-button">Zoom</a>
+                        <a href="{{ path(product) }}" class="btn btn-default fancybox-fast-view">View</a>
+                      </div>
+                    </div>
+                    <h3><a href="item.html">{{ product.name[:25] }}</a></h3>
+                    <div class="pi-price">{{ product.price|sylius_price }}</div>
+                  </div>
+                </li>
+                   {% endfor %}
+               </ul>
+           </div>
+           </div>

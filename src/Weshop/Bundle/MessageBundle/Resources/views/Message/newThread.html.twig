@@ -4,8 +4,6 @@
 
 {% block fos_message_content %}
 
-{{ form_errors(form) }}
-
 <form class="inbox-compose form-horizontal" id="fileupload" action="{{ url('fos_message_thread_new') }}" method="POST" enctype="multipart/form-data">
 	<div class="inbox-compose-btn">
 		<h2>{% trans from 'FOSMessageBundle' %}send_new{% endtrans %}</h2>
@@ -29,14 +27,7 @@
 	</div>
 	
 	<!-- The template to display files available for download -->
-	<script type="text/javascript">
-	jQuery(document).ready(function($){
-     $('.inbox-wysihtml5').wysihtml5({
-            "stylesheets": ["{{ asset('message/plugins/bootstrap-wysihtml5/wysiwyg-color.css') }}"]
-        });
-	});
-
-	</script>
+	
 	
 	    {{ form_row(form._token) }}
 
@@ -44,3 +35,14 @@
 </form>
 
 {% endblock %}
+ {% block javascripts%}
+ {{ parent() }}
+  <script type="text/javascript">
+    jQuery(document).ready(function($){
+     $('.inbox-wysihtml5').wysihtml5({
+            "stylesheets": ["{{ asset('message/plugins/bootstrap-wysihtml5/wysiwyg-color.css') }}"]
+        });
+    });
+
+    </script>
+ {% endblock %}

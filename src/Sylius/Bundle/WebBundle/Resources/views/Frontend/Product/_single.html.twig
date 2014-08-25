@@ -1,29 +1,29 @@
-<div class="row product">
-    <div class="col-md-3">
-        <a href="{{ path(product) }}" class="thumbnail">
-            <img src="{{ product.image ? product.image.path|imagine_filter('sylius_medium') : 'http://placehold.it/200x200' }}" alt="{{ product.name }}" />
-        </a>
-    </div>
-    <div class="col-md-9">
-        <a href="{{ path(product) }}" class="btn btn-link"><h3>{{ product.name }}</h3></a>
-        <p>{{ product.shortDescription|default('sylius.product.no_description'|trans)|raw }}</p>
 
-        <hr>
-        {% if not product.hasOptions %}
+                  <div class="product-item">
+                    <div class="pi-img-wrapper">
+                      <img src="{{ product.image ? product.image.path|imagine_filter('sylius_medium') : 'http://placehold.it/200x200' }}" alt="{{ product.name }}" class="img-responsive" />
+                      <div>
+                        <a href="{{ product.image ? product.image.path|imagine_filter('sylius_large') : 'http://placehold.it/400x400' }}" class="btn btn-default fancybox-button">Zoom</a>
+                        <a href="{{ path(product) }}" class="btn btn-default fancybox-fast-view">View</a>
+                      </div>
+                    </div>
+                    <h3><a href="{{ path(product) }}">{{ product.name[:25] }}</a></h3>
+                    <div class="pi-price">{{ product.price|sylius_price }}</div>
+                    {% if not product.hasOptions %}
             <div class="pull-left">
             {% if not sylius_inventory_is_available(product.masterVariant) %}
                 <br />
-                <span class="label label-important">{{ 'sylius.out_of_stock'|trans }}</span>
+                <span class="label label-important">out of stock</span>
             {% else %}
-                <form action="{{ path('sylius_cart_item_add', {'id': product.id}) }}" method="post" class="clearfix">
+                    <form action="{{ path('sylius_cart_item_add', {'id': product.id}) }}" method="post" class="clearfix">
                     {% set form = sylius_cart_form({'product': product}) %}
-                    {{ form_widget(form.quantity, {'attr': {'class': 'center-text'}, 'empty_value': '1'}) }}
+                    {{ form_widget(form.quantity, {'attr': {'class': 'center-text hidden'}, 'value': '1'}) }}
                     {{ form_widget(form._token) }}
-                    <button type="submit" class="btn btn-success"><i class="icon-shopping-cart icon-white"></i> {{ 'sylius.add_to_cart'|trans }}</button>
+                    <button type="submit" class="btn btn-default add2cart"><i class="icon-shopping-cart icon-white"></i> {# 'sylius.add_to_cart'|trans #} ADD To Card</button>
                 </form>
-            {% endif %}
+                {% endif %}
             </div>
         {% endif %}
-        <a href="{{ path(product) }}" class="btn btn-lg btn-info pull-right">{{ 'sylius.product.show'|trans }}</a>
-    </div>
-</div>
+                    <!--<div class="sticker sticker-sale"></div>-->
+                    
+                  </div>

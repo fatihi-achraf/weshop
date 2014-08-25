@@ -20,4 +20,14 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  */
 class SyliusWebBundle extends Bundle
 {
+	private function createItemMenu()
+    {
+    if ($this->cartProvider->hasCart()) {
+            $cart = $this->cartProvider->getCart();
+            $cartTotals = array('items' => $cart->countItems(), 'total' => $cart->getTotal());
+        } else {
+            $cartTotals = array('items' => 0, 'total' => 0);
+        }
+        return $cartTotals['items'];
+    }
 }

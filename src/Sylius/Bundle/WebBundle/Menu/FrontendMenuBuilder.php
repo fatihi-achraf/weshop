@@ -107,28 +107,11 @@ class FrontendMenuBuilder extends MenuBuilder
     {
         $menu = $this->factory->createItem('root', array(
             'childrenAttributes' => array(
-                'class' => 'nav nav-pills'
+                'class' => 'list-unstyled list-inline pull-right'
             )
         ));
 
-        if ($this->cartProvider->hasCart()) {
-            $cart = $this->cartProvider->getCart();
-            $cartTotals = array('items' => $cart->countItems(), 'total' => $cart->getTotal());
-        } else {
-            $cartTotals = array('items' => 0, 'total' => 0);
-        }
-
-        $menu->addChild('cart', array(
-            'route' => 'sylius_cart_summary',
-            'linkAttributes' => array('title' => $this->translate('sylius.frontend.menu.main.cart', array(
-                '%items%' => $cartTotals['items'],
-                '%total%' => $this->currencyHelper->convertAndFormatAmount($cartTotals['total'])
-            ))),
-            'labelAttributes' => array('icon' => 'icon-shopping-cart icon-large')
-        ))->setLabel($this->translate('sylius.frontend.menu.main.cart', array(
-            '%items%' => $cartTotals['items'],
-            '%total%' => $this->currencyHelper->convertAndFormatAmount($cartTotals['total'])
-        )));
+        
 
         if ($this->securityContext->getToken() && $this->securityContext->isGranted('ROLE_USER')) {
             $route = $this->request === null ? '' : $this->request->get('_route');
@@ -258,6 +241,8 @@ class FrontendMenuBuilder extends MenuBuilder
 
         return $menu;
     }
+
+
 
     private function createTaxonomiesMenuNode(ItemInterface $menu, TaxonInterface $taxon)
     {

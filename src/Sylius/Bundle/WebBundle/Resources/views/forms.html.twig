@@ -89,7 +89,7 @@
 {% spaceless %}
     <div class="form-group{% if errors|length > 0 %} has-error{% endif %}">
         {{ form_label(form) }}
-        <div class="col-lg-10">
+        <div class="col-lg-7">
         {{ form_widget(form) }}
         {% for error in errors %}
             <span class="help-block form-error">

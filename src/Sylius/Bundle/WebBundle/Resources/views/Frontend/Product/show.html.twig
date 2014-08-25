@@ -3,56 +3,54 @@
 {% set form = sylius_cart_form({'product': product}) %}
 
 {% block content %}
-<div class="row">
-    <div class="col-md-3">
-        <a href="{{ path(product) }}" class="thumbnail">
-            <img src="{{ product.image ? product.image.path|imagine_filter('sylius_medium') : 'http://placehold.it/200x200' }}" alt="{{ product.name }}" />
-        </a>
-    </div>
-    <div class="col-md-9">
-        <a href="{{ path(product) }}" class="btn btn-link"><h3>{{ product.name }}</h3></a>
-        <p>{{ product.shortDescription|default('sylius.product.no_description')|trans|raw }}</p>
-    </div>
-</div>
-{% if product.images|length > 0 %}
-<hr>
-<div id="gallery">
-    {% for image in product.images %}
-        <a href="{{ image.path|imagine_filter('sylius_large') }}" title="{{ product.name }}">
-            <img class="img-rounded" src="{{ image.path|imagine_filter('sylius_small') }}" alt="{{ product.name }}" />
-        </a>
-    {% endfor %}
-</div>
-{% endif %}
-<hr>
-<div class="row">
-    <div class="col-md-6">
-        {% if product.attributes|length > 0 %}
-        <table class="table table-condensed">
-            <thead>
-                <tr>
-                    <th colspan="2">{{ 'sylius.product.attributes'|trans }}</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for attribute in product.attributes %}
-                <tr>
-                    <td>{{ attribute.presentation }}</td>
-                    <td>{{ attribute.value }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        {% endif %}
-    </div>
-    <div class="col-md-6">
-        <h4>{{ 'sylius.product.description'|trans }}</h4>
-        <p>{{ product.description|default('sylius.product.no_description')|trans|raw }}</p>
-    </div>
-</div>
-<hr>
-<div class="row">
-    <form action="{{ path('sylius_cart_item_add', {'id': product.id}) }}" method="post" class="clearfix form-horizontal">
+
+<div class="main">
+      <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="">Store</a></li>
+            <li class="active">Cool green dress with red bell</li>
+        </ul>
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40">
+          <!-- BEGIN SIDEBAR -->
+          {% include 'SyliusWebBundle:Frontend:navigation.html.twig' %}
+
+          <!-- BEGIN CONTENT -->
+          <div class="col-md-9 col-sm-7">
+            <div class="product-page">
+              <div class="row">
+                <div class="col-md-6 col-sm-6">
+                  <div class="product-main-image">
+                    <img src="{{ product.image ? product.image.path|imagine_filter('sylius_medium') : 'http://placehold.it/200x200' }}" alt="{{ product.name }}"  class="img-responsive" data-BigImgSrc="{{ product.image ? product.image.path|imagine_filter('sylius_large') : 'http://placehold.it/200x200' }}">
+                  </div>
+                  {% if product.images|length > 0 %}
+                    <div class="product-other-images">
+                        {% for image in product.images %}
+                            <a href="{{ image.path|imagine_filter('sylius_large') }}" title="{{ product.name }}">
+                                <img class="img-rounded" src="{{ image.path|imagine_filter('sylius_small') }}" alt="{{ product.name }}" />
+                            </a>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                
+                </div>
+                <div class="col-md-6 col-sm-6">
+                  <h1>{{ product.name }}</h1>
+                  <div class="price-availability-block clearfix">
+                    <div class="price">
+                      <strong><span>$</span>{{ product.price|sylius_price }}</strong>
+                      <!--<em>$<span>62.00</span></em>-->
+                    </div>
+                    <div class="availability">
+                      Availability: <strong>In Stock</strong>
+                    </div>
+                  </div>
+                  <div class="description">
+                    <p>{{ product.shortDescription|default('sylius.product.no_description')|trans|raw }}</p>
+                  </div>
+                  <div class="product-page-options">
+                    <form action="{{ path('sylius_cart_item_add', {'id': product.id}) }}" method="post" class="clearfix form-horizontal">
     {% if product.hasVariants %}
         <div class="col-md-6">
             {% if product.isVariantSelectionMethodChoice %}
@@ -99,21 +97,82 @@
             {% endif %}
         </div>
     {% endif %}
-    <div class="col-md-6 pull-right">
+    <div class="product-page-cart">
         {% if not product.hasVariants and not sylius_inventory_is_available(product.masterVariant) %}
             <span class="label label-warning">{{ 'sylius.out_of_stock'|trans }}</span>
         {% else %}
-            {{ form_row(form.quantity, {'attr': {'class': 'center-text'}, 'empty_value': '1'}) }}
+        <div class="product-quantity">
+            {{ form_widget(form.quantity, {'attr': {'class': 'center-text form-control input-sm'}, 'empty_value': '1'}) }}
+            </div
             {{ form_widget(form._token) }}
-            <br>
-            <br>
+            
             {% if sylius_is_restricted(product) %}
-            <button disabled="disabled" class="btn btn-success btn-lg btn-block"><i class="icon-shopping-cart icon-white icon-large"></i> {{ 'sylius.product_not_available_in_zone'|trans }}</button>
+            <button disabled="disabled" class="btn btn-primary"><i class="icon-shopping-cart icon-white"></i> {{ 'sylius.product_not_available_in_zone'|trans }}</button>
             {% else %}
-                <button type="submit" class="btn btn-success btn-lg btn-block"><i class="icon-shopping-cart icon-white icon-large"></i> {{ 'sylius.add_to_cart'|trans }}</button>
+                <button type="submit" class="btn btn-primary"><i class="icon-shopping-cart icon-white"></i> {{ 'sylius.add_to_cart'|trans }}</button>
             {% endif %}
         {% endif %}
     </div>
 </form>
+                  </div>
+                
+                  <ul class="social-icons">
+                    <li><a class="facebook" data-original-title="facebook" href="#"></a></li>
+                    <li><a class="twitter" data-original-title="twitter" href="#"></a></li>
+                    <li><a class="googleplus" data-original-title="googleplus" href="#"></a></li>
+                    <li><a class="evernote" data-original-title="evernote" href="#"></a></li>
+                    <li><a class="tumblr" data-original-title="tumblr" href="#"></a></li>
+                  </ul>
+                </div>
+
+                <div class="product-page-content">
+                  <ul id="myTab" class="nav nav-tabs">
+                    <li><a href="#Description" data-toggle="tab">{{ 'sylius.product.description'|trans }}</a></li>
+                    <li><a href="#Information" data-toggle="tab">Information</a></li>
+                    <!--li class="active"><a href="#Reviews" data-toggle="tab">Reviews (2)</a></li-->
+                  </ul>
+                  <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane in active" id="Description">
+                      <p>{{ product.description|default('sylius.product.no_description')|trans|raw }}</p>
+                    </div>
+                    <div class="tab-pane fade" id="Information">
+                      {% if product.attributes|length > 0 %}
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th colspan="2">{{ 'sylius.product.attributes'|trans }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for attribute in product.attributes %}
+                                <tr>
+                                    <td>{{ attribute.presentation }}</td>
+                                    <td>{{ attribute.value }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        {% endif %}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="sticker sticker-sale"></div>
+              </div>
+            </div>
+          </div>
+          <!-- END CONTENT -->
+        </div>
+        <!-- END SIDEBAR & CONTENT -->
+
+        <!-- BEGIN SIMILAR PRODUCTS -->
+      
+                {{ render(url('sylius_partial_product_latest', {'limit': 7, 'template': 'SyliusWebBundle:Frontend/Product:latestSidebar.html.twig'})) }}
+
+        <!-- END SIMILAR PRODUCTS -->
+      </div>
+    </div>
 </div>
+
+
 {% endblock %}

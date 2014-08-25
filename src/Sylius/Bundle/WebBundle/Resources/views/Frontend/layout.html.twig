@@ -11,93 +11,392 @@
         <meta name="description" content="{{ settings.meta_description|default('sylius.meta.frontend_description'|trans) }}">
         <meta name="keywords" content="{{ settings.meta_keywords|default('sylius.meta.frontend_keywords'|trans) }}">
 
-        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Open+Sans:300italic,400,300,700' rel='stylesheet' type='text/css'>
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&subset=all" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=PT+Sans+Narrow&subset=all" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900&subset=all" rel="stylesheet" type="text/css"><!--- fonts for slider on the index page -->
+  <!-- Fonts END -->
+
+  <!-- Global styles START -->          
+  <link href="{{ asset("template/plugins/font-awesome/css/font-awesome.min.css")}}" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" type="text/css" />
+  <link href="{{ asset("template/plugins/bootstrap/css/bootstrap.css")}}" rel="stylesheet" type="text/css">
+  <!-- Global styles END --> 
+   
+  <!-- Page level plugin styles START -->
+  <link href="{{ asset("template/plugins/fancybox/source/jquery.fancybox.css")}}" rel="stylesheet">              
+  <link href="{{ asset("template/plugins/bxslider/jquery.bxslider.css")}}" rel="stylesheet">
+  <link rel="stylesheet" href="{{ asset("template/plugins/layerslider/css/layerslider.css")}}" type="text/css">
+  <!-- Page level plugin styles END -->
+
+  <!-- Theme styles START -->
+  <link href="{{ asset("template/css/style-metronic.css") }}" rel="stylesheet" type="text/css">
+  <link href="{{ asset("template/css/style.css")}}" rel="stylesheet" type="text/css">
+  <link href="{{ asset("template/css/style-responsive.css")}}" rel="stylesheet" type="text/css">  
+  <link href="{{ asset("template/css/custom.css")}}" rel="stylesheet" type="text/css">
 
         {# stylesheets... #}
         {% block stylesheets %}
-            <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css" type="text/css" />
-            <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" type="text/css" />
+            
             {% stylesheets output='assets/compiled/frontend.css' filter='cssrewrite'
-                'bundles/syliusweb/css/frontend.css'
-                'bundles/syliusweb/css/blueimp-gallery.css'
+                
             %}
                 <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
             {% endstylesheets %}
         {% endblock %}
-{% block js%}
 
-        <script src="{{ asset("message/plugins/respond.min.js") }}"></script>
-<script src="{{ asset("message/plugins/excanvas.min.js") }}"></script> 
-<script src="{{ asset("message/plugins/jquery-1.10.2.min.js") }}" type="text/javascript"></script>
-<script src="{{ asset("message/plugins/jquery-migrate-1.2.1.min.js") }}" type="text/javascript"></script>
-<script src="{{ asset("message/plugins/bootstrap/js/bootstrap.min.js") }}" type="text/javascript"></script>
-<script src="{{ asset("message/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js") }}" type="text/javascript"></script>
-<script src="{{ asset("message/plugins/jquery-slimscroll/jquery.slimscroll.min.js") }}" type="text/javascript"></script>
-<script src="{{ asset("message/plugins/jquery.blockui.min.js") }}" type="text/javascript"></script>
-<script src="{{ asset("message/plugins/jquery.cokie.min.js") }}" type="text/javascript"></script>
-<script src="{{ asset("message/plugins/uniform/jquery.uniform.min.js") }}" type="text/javascript"></script>
-<!-- END CORE PLUGINS -->
-<!-- BEGIN: Page level plugins -->
-<script src="{{ asset("message/plugins/fancybox/source/jquery.fancybox.pack.js") }}" type="text/javascript"></script>
-<script src="{{ asset("message/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js") }}" type="text/javascript"></script>
-<script src="{{ asset("message/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js") }}" type="text/javascript"></script>
-<!-- BEGIN:File Upload Plugin JS files-->
-<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
-<script src="{{ asset("message/plugins/jquery-file-upload/js/vendor/jquery.ui.widget.js") }}"></script>
-<!-- The Templates plugin is included to render the upload/download listings -->
-<script src="{{ asset("message/plugins/jquery-file-upload/js/vendor/tmpl.min.js") }}"></script>
-<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
-<script src="{{ asset("message/plugins/jquery-file-upload/js/vendor/load-image.min.js") }}"></script>
-<!-- The Canvas to Blob plugin is included for image resizing functionality -->
-<script src="{{ asset("message/plugins/jquery-file-upload/js/vendor/canvas-to-blob.min.js") }}"></script>
-<!-- blueimp Gallery script -->
-<script src="{{ asset("message/plugins/jquery-file-upload/blueimp-gallery/jquery.blueimp-gallery.min.js") }}"></script>
-<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
-<script src="{{ asset("message/plugins/jquery-file-upload/js/jquery.iframe-transport.js") }}"></script>
-<!-- The basic File Upload plugin -->
-<script src="{{ asset("message/plugins/jquery-file-upload/js/jquery.fileupload.js") }}"></script>
-<!-- The File Upload processing plugin -->
-<script src="{{ asset("message/plugins/jquery-file-upload/js/jquery.fileupload-process.js") }}"></script>
-<!-- The File Upload image preview & resize plugin -->
-<script src="{{ asset("message/plugins/jquery-file-upload/js/jquery.fileupload-image.js") }}"></script>
-<!-- The File Upload audio preview plugin -->
-<script src="{{ asset("message/plugins/jquery-file-upload/js/jquery.fileupload-audio.js") }}"></script>
-<!-- The File Upload video preview plugin -->
-<script src="{{ asset("message/plugins/jquery-file-upload/js/jquery.fileupload-video.js") }}"></script>
-<!-- The File Upload validation plugin -->
-<script src="{{ asset("message/plugins/jquery-file-upload/js/jquery.fileupload-validate.js") }}"></script>
-<!-- The File Upload user interface plugin -->
-<script src="{{ asset("message/plugins/jquery-file-upload/js/jquery.fileupload-ui.js") }}"></script>
-{% endblock %}
         <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
         <!--[if lt IE 9]>
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
     </head>
     <body>
+            <!-- BEGIN TOP BAR -->
+    <div class="pre-header">
         <div class="container">
-        {% block header %}
-            <div class="masthead pull-right">
+            <div class="row">
+                <!-- BEGIN TOP BAR LEFT PART -->
+                <div class="col-md-5 col-sm-5 additional-shop-info">
+                    <ul class="list-unstyled list-inline">
+                        <li><i class="fa fa-phone"></i><span>+1 456 6717</span></li>
+                    </ul>
+                </div>
+                <!-- END TOP BAR LEFT PART -->
+                <!-- BEGIN TOP BAR MENU -->
+                <div class="col-md-7 col-sm-7 additional-nav">
+                              
                 {{ knp_menu_render('sylius.frontend.main', {'template': 'SyliusWebBundle:Frontend:menu.html.twig', 'allow_safe_labels' : true}) }}
+            
+                    
+                </div>
+                <!-- END TOP BAR MENU -->
             </div>
-            <h1 class="logo"><a href="{{ path('sylius_homepage') }}" title="{{ 'sylius.logo'|trans }}"><span>{{ 'sylius.logo'|trans }}</span></a></h1>
-        {% endblock %}
+        </div>        
+    </div>
+    <!-- END TOP BAR -->
 
-        {% block flashes %}
-            {% for type in ['success', 'error', 'fos_user_success'] %}
-                {% for flash in app.session.flashbag.get(type) %}
-                    <div class="alert alert-{{ type == 'fos_user_success' ? 'success' : type == 'error' ? 'danger' : type == 'notice' ? 'warning' : type }}">
-                        <a class="close" data-dismiss="alert" href="#">×</a>
-                        {{ flash|trans }}
+    <!-- BEGIN HEADER -->
+   
+        {% block header %}
+         <div role="navigation" class="navbar header no-margin">
+        <div class="container">
+            <div class="navbar-header">
+                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+                <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- END RESPONSIVE MENU TOGGLER -->
+                <a href="{{ path('sylius_homepage') }}" class="navbar-brand"><img src="{{ asset("template/img/logo_red.png")}}" alt="Metronic Shop UI"></a><!-- LOGO -->
+            </div>
+            <!-- BEGIN CART -->
+            <div class="cart-block">
+                <div class="cart-info">
+            
+                    <a href="javascript:void(0);" class="cart-info-value"></a>
+
+                </div>
+                <i class="fa fa-shopping-cart"></i>
+                <!-- BEGIN CART CONTENT -->
+                <div class="cart-content-wrapper">
+                  <div class="cart-content">
+                    <ul class="scroller" style="height: 250px;">
+                      <li>
+                        <a href="item.html"><img src="{{ asset("template/temp/cart-img.jpg")}}" alt="Rolex Classic Watch" width="37" height="34"></a>
+                        <span class="cart-content-count">x 1</span>
+                        <strong><a href="item.html">Rolex Classic Watch</a></strong>
+                        <em>$1230</em>
+                        <a href="javascript:void(0);" class="del-goods"><i class="fa fa-times"></i></a>
+                      </li>
+                      <li>
+                       <a href="item.html"><img src="assets/temp/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                        <span class="cart-content-count">x 1</span>
+                        <strong><a href="item.html">Rolex Classic Watch</a></strong>
+                        <em>$1230</em>
+                        <a href="javascript:void(0);" class="del-goods"><i class="fa fa-times"></i></a>
+                      </li>
+                      <li>
+                        <a href="item.html"><img src="assets/temp/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                        <span class="cart-content-count">x 1</span>
+                        <strong><a href="item.html">Rolex Classic Watch</a></strong>
+                        <em>$1230</em>
+                        <a href="javascript:void(0);" class="del-goods"><i class="fa fa-times"></i></a>
+                      </li>
+                      <li>
+                        <a href="item.html"><img src="assets/temp/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                        <span class="cart-content-count">x 1</span>
+                        <strong><a href="item.html">Rolex Classic Watch</a></strong>
+                        <em>$1230</em>
+                        <a href="javascript:void(0);" class="del-goods"><i class="fa fa-times"></i></a>
+                      </li>
+                      <li>
+                        <a href="item.html"><img src="{{ asset("template/temp/cart-img.jpg")}}" alt="Rolex Classic Watch" width="37" height="34"></a>
+                        <span class="cart-content-count">x 1</span>
+                        <strong><a href="item.html">Rolex Classic Watch</a></strong>
+                        <em>$1230</em>
+                        <a href="javascript:void(0);" class="del-goods"><i class="fa fa-times"></i></a>
+                      </li>
+                      <li>
+                       <a href="item.html"><img src="{{ asset("template/temp/cart-img.jpg")}}" alt="Rolex Classic Watch" width="37" height="34"></a>
+                        <span class="cart-content-count">x 1</span>
+                        <strong><a href="item.html">Rolex Classic Watch</a></strong>
+                        <em>$1230</em>
+                        <a href="javascript:void(0);" class="del-goods"><i class="fa fa-times"></i></a>
+                      </li>
+                      <li>
+                        <a href="item.html"><img src="{{ asset("template/temp/cart-img.jpg")}}" alt="Rolex Classic Watch" width="37" height="34"></a>
+                        <span class="cart-content-count">x 1</span>
+                        <strong><a href="item.html">Rolex Classic Watch</a></strong>
+                        <em>$1230</em>
+                        <a href="javascript:void(0);" class="del-goods"><i class="fa fa-times"></i></a>
+                      </li>
+                      <li>
+                        <a href="item.html"><img src="{{ asset("template/temp/cart-img.jpg")}}" alt="Rolex Classic Watch" width="37" height="34"></a>
+                        <span class="cart-content-count">x 1</span>
+                        <strong><a href="item.html">Rolex Classic Watch</a></strong>
+                        <em>$1230</em>
+                        <a href="javascript:void(0);" class="del-goods"><i class="fa fa-times"></i></a>
+                      </li>
+                    </ul>
+                    <div class="text-right">
+                      <a href="shopping-cart.html" class="btn btn-default">View Cart</a>
+                      <a href="checkout.html" class="btn btn-primary">Checkout</a>
                     </div>
-                {% endfor %}
-            {% endfor %}
+                  </div>
+                </div>
+                <!-- END CART CONTENT -->
+            </div>
+            <!-- END CART -->
+            <!-- BEGIN NAVIGATION -->
+            <div class="collapse navbar-collapse mega-menu">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                      <a class="dropdown-toggle" data-toggle="dropdown" data-delay="0" data-close-others="false" data-target="product-list.html" href="product-list.html">
+                        Woman 
+                        <i class="fa fa-angle-down"></i>
+                      </a>
+                      <!-- BEGIN DROPDOWN MENU -->
+                      <ul class="dropdown-menu" aria-labelledby="mega-menu">
+                        <li>
+                          <div class="nav-content">
+                            <!-- BEGIN DROPDOWN MENU - COLUMN -->
+                            <div class="nav-content-col">
+                              <h3>Footwear</h3>
+                              <ul>
+                                <li><a href="product-list.html">Astro Trainers</a></li>
+                                <li><a href="product-list.html">Basketball Shoes</a></li>
+                                <li><a href="product-list.html">Boots</a></li>
+                                <li><a href="product-list.html">Canvas Shoes</a></li>
+                                <li><a href="product-list.html">Football Boots</a></li>
+                                <li><a href="product-list.html">Golf Shoes</a></li>
+                                <li><a href="product-list.html">Hi Tops</a></li>
+                                <li><a href="product-list.html">Indoor and Court Trainers</a></li>
+                              </ul>
+                            </div>
+                            <!-- END DROPDOWN MENU - COLUMN -->
+                            <!-- BEGIN DROPDOWN MENU - COLUMN -->
+                            <div class="nav-content-col">
+                              <h3>Clothing</h3>
+                              <ul>
+                                <li><a href="product-list.html">Base Layer</a></li>
+                                <li><a href="product-list.html">Character</a></li>
+                                <li><a href="product-list.html">Chinos</a></li>
+                                <li><a href="product-list.html">Combats</a></li>
+                                <li><a href="product-list.html">Cricket Clothing</a></li>
+                                <li><a href="product-list.html">Fleeces</a></li>
+                                <li><a href="product-list.html">Gilets</a></li>
+                                <li><a href="product-list.html">Golf Tops</a></li>
+                              </ul>
+                            </div>
+                            <!-- END DROPDOWN MENU - COLUMN -->
+                            <!-- BEGIN DROPDOWN MENU - COLUMN -->
+                            <div class="nav-content-col">
+                              <h3>Accessories</h3>
+                              <ul>
+                                <li><a href="product-list.html">Belts</a></li>
+                                <li><a href="product-list.html">Caps</a></li>
+                                <li><a href="product-list.html">Gloves, Hats and Scarves</a></li>
+                              </ul>
+
+                              <h3>Clearance</h3>
+                              <ul>
+                                <li><a href="product-list.html">Jackets</a></li>
+                                <li><a href="product-list.html">Bottoms</a></li>
+                              </ul>
+                            </div>
+                            <!-- END DROPDOWN MENU - COLUMN -->
+                            <!-- BEGIN DROPDOWN MENU - BRANDS -->
+                            <div class="nav-brands">
+                              <ul>
+                                <li><a href="product-list.html"><img title="esprit" alt="esprit" src="{{ asset("template/temp/brands/esprit.jpg")}}"></a></li>
+                                <li><a href="product-list.html"><img title="gap" alt="gap" src="{{ asset("template/temp/brands/gap.jpg")}}"></a></li>
+                                <li><a href="product-list.html"><img title="next" alt="next" src="{{ asset("template/temp/brands/next.jpg")}}"></a></li>
+                                <li><a href="product-list.html"><img title="puma" alt="puma" src="{{ asset("template/temp/brands/puma.jpg")}}"></a></li>
+                                <li><a href="product-list.html"><img title="zara" alt="zara" src="{{ asset("template/temp/brands/zara.jpg")}}"></a></li>
+                              </ul>
+                            </div>
+                            <!-- END DROPDOWN MENU - BRANDS -->
+                          </div>
+                        </li>
+                      </ul>
+                      <!-- END DROPDOWN MENU -->
+                    </li>
+                    <li><a href="product-list.html">Men</a></li>
+                    <li class="dropdown">
+                      <a class="dropdown-toggle" data-toggle="dropdown" data-delay="0" data-close-others="false" data-target="product-list.html" href="product-list.html">
+                        Kids
+                        <i class="fa fa-angle-down"></i>
+                      </a>
+                      <!-- BEGIN DROPDOWN MENU -->
+                      <ul class="dropdown-menu">
+                        <li class="dropdown-submenu">
+                          <a href="product-list.html">Hi Tops <i class="fa fa-angle-right"></i></a>
+                          <ul class="dropdown-menu">
+                            <li><a href="product-list.html">Second Level Link</a></li>
+                            <li><a href="product-list.html">Second Level Link</a></li>
+                            <li class="dropdown-submenu">
+                              <a href="product-list.html">Second Level Link <i class="fa fa-angle-right"></i></a>
+                              <ul class="dropdown-menu">
+                                <li><a href="product-list.html">Third Level Link</a></li>
+                                <li><a href="product-list.html">Third Level Link</a></li>
+                                <li><a href="product-list.html">Third Level Link</a></li>
+                              </ul>
+                            </li>
+                          </ul>
+                        </li>
+                        <li><a href="product-list.html">Running Shoes</a></li>
+                        <li><a href="product-list.html">Jackets and Coats</a></li>
+                        <li><a href="product-list.html">Tennis Clothing</a></li>
+                        <li class="dropdown-submenu">
+                          <a href="product-list.html">Running Clothing <i class="fa fa-angle-right"></i></a>
+                          <ul class="dropdown-menu">
+                            <li><a href="product-list.html">Second Level Link</a></li>
+                            <li><a href="product-list.html">Second Level Link</a></li>
+                            <li class="dropdown-submenu">
+                              <a href="product-list.html">Second Level Link <i class="fa fa-angle-right"></i></a>
+                              <ul class="dropdown-menu">
+                                <li><a href="product-list.html">Third Level Link</a></li>
+                                <li><a href="product-list.html">Third Level Link</a></li>
+                                <li><a href="product-list.html">Third Level Link</a></li>
+                              </ul>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                      <!-- END DROPDOWN MENU -->
+                    </li>
+                    <li class="dropdown">
+                      <a class="dropdown-toggle" data-toggle="dropdown" data-delay="0" data-close-others="false" data-target="product-list.html" href="product-list.html">
+                        New 
+                        <i class="fa fa-angle-down"></i>
+                      </a>
+                      <!-- BEGIN DROPDOWN MENU -->
+                      <ul class="dropdown-menu" aria-labelledby="mega-menu-catalogue">
+                        <li>
+                          <div class="nav-content">
+                            <div class="product-item">
+                              <div class="pi-img-wrapper">
+                                <a href="item.html"><img src="{{ asset("template/temp/products/model4.jpg")}}" class="img-responsive" alt="Berry Lace Dress"></a>
+                              </div>
+                              <h3><a href="item.html">Berry Lace Dress</a></h3>
+                              <div class="pi-price">$29.00</div>
+                              <a href="#" class="btn btn-default add2cart">Add to cart</a>
+                            </div>
+                            <div class="product-item">
+                              <div class="pi-img-wrapper">
+                                <a href="item.html"><img src="{{ asset("template/temp/products/model3.jpg")}}" class="img-responsive" alt="Berry Lace Dress"></a>
+                              </div>
+                              <h3><a href="item.html">Berry Lace Dress</a></h3>
+                              <div class="pi-price">$29.00</div>
+                              <a href="#" class="btn btn-default add2cart">Add to cart</a>
+                            </div>
+                            <div class="product-item">
+                              <div class="pi-img-wrapper">
+                                <a href="item.html"><img src="{{ asset("template/temp/products/model7.jpg")}}" class="img-responsive" alt="Berry Lace Dress"></a>
+                              </div>
+                              <h3><a href="item.html">Berry Lace Dress</a></h3>
+                              <div class="pi-price">$29.00</div>
+                              <a href="#" class="btn btn-default add2cart">Add to cart</a>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                      <!-- END DROPDOWN MENU -->
+                    </li>
+                    <li class="dropdown">
+                      <a class="dropdown-toggle" data-toggle="dropdown" data-delay="0" data-close-others="false" data-target="#" href="#">
+                        Pages
+                        <i class="fa fa-angle-down"></i>
+                      </a>
+                      <!-- BEGIN DROPDOWN MENU -->
+                      <ul class="dropdown-menu">
+                        <li><a href="index-light-footer.html">Light Footer</a></li>
+                        <li><a href="product-list.html">Product List</a></li>
+                        <li><a href="search-result.html">Search Result</a></li>
+                        <li><a href="item.html">Product Page</a></li>
+                        <li><a href="shopping-cart-null.html">Shopping Cart (Null Cart)</a></li>
+                        <li><a href="shopping-cart.html">Shopping Cart</a></li>
+                        <li><a href="checkout.html">Checkout</a></li>
+                        <li><a href="reg-page.html">Registration Page</a></li>
+                        <li><a href="login-page.html">Login Page</a></li>
+                        <li><a href="forgotton-password.html">Forget Password</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contacts.html">Contacts</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-conditions-page.html">Terms & Conditions</a></li>
+                        <li><a href="site-map.html">Site Map</a></li>
+                        <li><a href="page-404.html">404</a></li>
+                        <li><a href="page-500.html">500</a></li> 
+                      </ul>
+                      <!-- END DROPDOWN MENU -->
+                    </li>
+                    <li class="dropdown">
+                      <a class="dropdown-toggle" data-toggle="dropdown" data-delay="0" data-close-others="false" data-target="#" href="#">
+                        Features
+                        <i class="fa fa-angle-down"></i>
+                      </a>
+                      <!-- BEGIN DROPDOWN MENU -->
+                      <ul class="dropdown-menu">
+                        <li><a href="feature-typography.html">Typography</a></li>
+                        <li><a href="feature-forms.html">Forms</a></li>
+                        <li><a href="feature-buttons.html">Buttons</a></li>
+                        <li><a href="feature-icons.html">Icons</a></li>
+                      </ul>
+                      <!-- END DROPDOWN MENU -->
+                    </li>
+                    <li><a href="http://keenthemes.com/preview/metronic_admin/ecommerce_index.html">Admin theme</a></li>
+                    <!-- BEGIN TOP SEARCH -->
+                    <li class="menu-search">
+                        <span class="sep"></span>
+                        <i class="fa fa-search search-btn"></i>
+                        <div class="search-box">
+                            <form action="#">
+                                <div class="input-group">
+                                    <input type="text" placeholder="Search" class="form-control">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary" type="submit">Search</button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div> 
+                    </li>
+                    <!-- END TOP SEARCH -->
+                </ul>
+            </div>
+            <!-- END NAVIGATION -->
+        </div>
+
+    </div>
+    <!-- END HEADER -->
+           
         {% endblock %}
 
         {% block main %}
         <hr>
         <div class="row">
-            <div class="col-md-3" id="sidebar">
+            <!--div class="col-md-3" id="sidebar">
                 {% block sidebar %}
                 <h4>{{ 'sylius.shop_by'|trans }}</h4><br>
                 {{ knp_menu_render('sylius.frontend.taxonomies', {'template': 'SyliusWebBundle:Frontend:menu.html.twig'}) }}
@@ -108,59 +407,312 @@
                     <ul>
                     {% for child in cmf_children(cmf_find('/cms/pages')) %}
                         <li>
-                            <a href="{{ path(child) }}">{{ child.title|striptags }}</a>
+                           <a href="{{ path(child) }}">{{ child.title|striptags }}</a>
                         </li>
                     {% endfor %}
                     </ul>
                 {% endblock %}
-            </div>
-            <div class="col-md-9">
+            </div-->
                 {% block content %}
                 {% endblock %}
+        </div>
+       
+        {% endblock %}
+
+        {#% block gallery %}
+            {# Gallery modal #}
+            {#% include 'SyliusWebBundle::gallery.html.twig' %#}
+        {#% endblock %#}
+
+        {# Confirmation modal #}
+        {#% include 'SyliusWebBundle::confirm-modal.html.twig' %#}
+
+        </div>
+<!-- BEGIN BRANDS -->
+    <div class="brands">
+      <div class="container">
+        <div class="row">
+          <div class="bxslider-wrapper">
+            <ul class="bxslider" data-slides-phone="1" data-slides-tablet="3" data-slides-desktop="6" data-slide-margin="15">
+              {% for i in 0..12 %}
+              <li><a href="product-list.html"><img src="{{ asset("template/temp/brands/canon.jpg")}}" alt="canon" title="canon"></a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END BRANDS -->
+<!-- BEGIN STEPS -->
+<div class="steps3 steps3red">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 steps3-col">
+            <i class="fa fa-truck"></i>
+            <div>
+              <h2>Free shipping</h2>
+              <em>Express delivery withing 3 days</em>
             </div>
+            <span>&nbsp;</span>
+          </div>
+          <div class="col-md-4 steps3-col">
+            <i class="fa fa-gift"></i>
+            <div>
+              <h2>Daily Gifts</h2>
+              <em>3 Gifts daily for lucky customers</em>
+            </div>
+            <span>&nbsp;</span>
+          </div>
+          <div class="col-md-4 steps3-col">
+            <i class="fa fa-phone"></i>
+            <div>
+              <h2>477 505 8877</h2>
+              <em>24/7 customer care available</em>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END STEPS -->
+
+    <!-- BEGIN PRE-FOOTER -->
+    <div class="pre-footer">
+      <div class="container">
+        <div class="row">
+          <!-- BEGIN BOTTOM ABOUT BLOCK -->
+          <div class="col-md-3 col-sm-6 pre-footer-col">
+            <h2>About us</h2>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam sit nonummy nibh euismod tincidunt ut laoreet dolore magna aliquarm erat sit volutpat. Nostrud exerci tation ullamcorper suscipit lobortis nisl aliquip  commodo consequat. </p>
+            <p>Duis autem vel eum iriure dolor vulputate velit esse molestie at dolore.</p>
+          </div>
+          <!-- END BOTTOM ABOUT BLOCK -->
+          <!-- BEGIN BOTTOM INFO BLOCK -->
+          <div class="col-md-3 col-sm-6 pre-footer-col">
+            <h2>Information</h2>
+            <ul class="list-unstyled">
+              <li><i class="fa fa-angle-right"></i> <a href="#">Delivery Information</a></li>
+              <li><i class="fa fa-angle-right"></i> <a href="#">Customer Service</a></li>
+              <li><i class="fa fa-angle-right"></i> <a href="#">Order Tracking</a></li>
+              <li><i class="fa fa-angle-right"></i> <a href="#">Shipping & Returns</a></li>
+              <li><i class="fa fa-angle-right"></i> <a href="contacts.html">Contact Us</a></li>
+              <li><i class="fa fa-angle-right"></i> <a href="#">Careers</a></li>
+              <li><i class="fa fa-angle-right"></i> <a href="#">Payment Methods</a></li>
+            </ul>
+          </div>
+          <!-- END INFO BLOCK -->
+          <!-- BEGIN TWITTER BLOCK --> 
+          <div class="col-md-3 col-sm-6 pre-footer-col">
+            <h2>Latest Tweets</h2>
+            <dl class="dl-horizontal f-twitter">
+              <dt><i class="fa fa-twitter"></i></dt>
+              <dd>
+                <a href="#">@keenthemes</a>
+                Imperdiet condimentum diam dolor lorem sit consectetur adipiscing
+                <span>3 min ago</span>
+              </dd>
+            </dl>                    
+            <dl class="dl-horizontal f-twitter">
+              <dt><i class="fa fa-twitter"></i></dt>
+              <dd>
+                <a href="#">@keenthemes</a>
+                Imperdiet condimentum diam dolor lorem sit consectetur adipiscing
+                <span>3 min ago</span>
+              </dd>
+            </dl> 
+            <dl class="dl-horizontal f-twitter">
+              <dt><i class="fa fa-twitter"></i></dt>
+              <dd>
+                <a href="#">@keenthemes</a>
+                Imperdiet condimentum diam dolor lorem sit consectetur adipiscing
+                <span>3 min ago</span>
+              </dd>
+            </dl>           
+          </div>
+          <!-- END TWITTER BLOCK -->
+          <!-- BEGIN BOTTOM CONTACTS -->
+          <div class="col-md-3 col-sm-6 pre-footer-col">
+            <h2>Our Contacts</h2>
+            <address class="margin-bottom-40">
+              35, Lorem Lis Street, Park Ave<br>
+              California, US<br>
+              Phone: 300 323 3456<br>
+              Fax: 300 323 1456<br>
+              Email: <a href="mailto:info@metronic.com">info@metronic.com</a><br>
+              Skype: <a href="skype:metronic">metronic</a>
+            </address>
+          </div>
+          <!-- END BOTTOM CONTACTS -->
         </div>
         <hr>
         <div class="row">
-            {% for i in 1..3 %}
-                <div class="col-md-4">
-                    {{ sonata_block_render({'name': '/cms/blocks/block-' ~ i}) }}
+          <!-- BEGIN SOCIAL ICONS -->
+          <div class="col-md-6 col-sm-6">
+            <ul class="social-icons">
+              <li><a class="rss" data-original-title="rss" href="#"></a></li>
+              <li><a class="facebook" data-original-title="facebook" href="#"></a></li>
+              <li><a class="twitter" data-original-title="twitter" href="#"></a></li>
+              <li><a class="googleplus" data-original-title="googleplus" href="#"></a></li>
+              <li><a class="linkedin" data-original-title="linkedin" href="#"></a></li>
+              <li><a class="youtube" data-original-title="youtube" href="#"></a></li>
+              <li><a class="vimeo" data-original-title="vimeo" href="#"></a></li>
+              <li><a class="skype" data-original-title="skype" href="#"></a></li>
+            </ul>
+          </div>
+          <!-- END SOCIAL ICONS -->
+          <!-- BEGIN NEWLETTER -->
+          <div class="col-md-6 col-sm-6">
+            <div class="pre-footer-subscribe-box pull-right">
+              <h2>Newsletter</h2>
+              <form action="#">
+                <div class="input-group">
+                  <input type="text" placeholder="youremail@mail.com" class="form-control">
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit">Subscribe</button>
+                  </span>
                 </div>
-            {% endfor %}
+              </form>
+            </div> 
+          </div>
+          <!-- END NEWLETTER -->
         </div>
-        <hr>
-        {% endblock %}
+      </div>
+    </div>
+    <!-- END PRE-FOOTER -->
 
-        {% block gallery %}
-            {# Gallery modal #}
-            {% include 'SyliusWebBundle::gallery.html.twig' %}
-        {% endblock %}
+    <!-- BEGIN FOOTER -->
+    <div class="footer padding-top-15">
+      <div class="container">
+        <div class="row">
+          <!-- BEGIN COPYRIGHT -->
+          <div class="col-md-6 col-sm-6 padding-top-10">
+            2014 © Webeuz. ALL Rights Reserved. 
+          </div>
+          <!-- END COPYRIGHT -->
+          <!-- BEGIN PAYMENTS -->
+          <div class="col-md-6 col-sm-6">
+            <ul class="list-unstyled list-inline pull-right margin-bottom-15">
+              <li><img src="{{ asset("template/img/payments/western-union.jpg")}}" alt="We accept Western Union" title="We accept Western Union"></li>
+              <li><img src="{{ asset("template/img/payments/american-express.jpg")}}" alt="We accept American Express" title="We accept American Express"></li>
+              <li><img src="{{ asset("template/img/payments/MasterCard.jpg")}}" alt="We accept MasterCard" title="We accept MasterCard"></li>
+              <li><img src="{{ asset("template/img/payments/PayPal.jpg")}}" alt="We accept PayPal" title="We accept PayPal"></li>
+              <li><img src="{{ asset("template/img/payments/visa.jpg")}}" alt="We accept Visa" title="We accept Visa"></li>
+            </ul>
+          </div>
+          <!-- END PAYMENTS -->
+        </div>
+      </div>
+    </div>
+    <!-- END FOOTER -->
 
-        {# Confirmation modal #}
-        {% include 'SyliusWebBundle::confirm-modal.html.twig' %}
+    <!-- BEGIN fast view of a product -->
+    <div id="product-pop-up" style="display: none; width: 700px;">
+            <div class="product-page product-pop-up">
+              <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-3">
+                  <div class="product-main-image">
+                    <img src="{{ asset("template/temp/products/model7.jpg")}}" alt="Cool green dress with red bell" class="img-responsive">
+                  </div>
+                  <div class="product-other-images">
+                    <a href="#" class="active"><img alt="Berry Lace Dress" src="{{ asset("template/temp/products/model3.jpg")}}"></a>
+                    <a href="#"><img alt="Berry Lace Dress" src="{{ asset("template/temp/products/model4.jpg")}}"></a>
+                    <a href="#"><img alt="Berry Lace Dress" src="{{ asset("template/temp/products/model5.jpg")}}"></a>
+                  </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-9">
+                  <h1>Cool green dress with red bell</h1>
+                  <div class="price-availability-block clearfix">
+                    <div class="price">
+                      <strong><span>$</span>47.00</strong>
+                      <em>$<span>62.00</span></em>
+                    </div>
+                    <div class="availability">
+                      Availability: <strong>In Stock</strong>
+                    </div>
+                  </div>
+                  <div class="description">
+                    <p>Lorem ipsum dolor ut sit ame dolore  adipiscing elit, sed nonumy nibh sed euismod laoreet dolore magna aliquarm erat volutpat 
+Nostrud duis molestie at dolore.</p>
+                  </div>
+                  <div class="product-page-options">
+                    <div class="pull-left">
+                      <label class="control-label">Size:</label>
+                      <select class="form-control input-sm">
+                        <option>L</option>
+                        <option>M</option>
+                        <option>XL</option>
+                      </select>
+                    </div>
+                    <div class="pull-left">
+                      <label class="control-label">Color:</label>
+                      <select class="form-control input-sm">
+                        <option>Red</option>
+                        <option>Blue</option>
+                        <option>Black</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="product-page-cart">
+                    <div class="product-quantity">
+                        <input id="product-quantity" type="text" value="1" readonly name="product-quantity" class="form-control input-sm">
+                    </div>
+                    <button class="btn btn-primary" type="submit">Add to cart</button>
+                    <button class="btn btn-default" type="submit">More details</button>
+                  </div>
+                </div>
 
-        {% block footer %}
-            <div class="footer">
-                <p class="text-muted">
-                    &copy; Sylius, 2011 - {{ 'now'|date('Y') }}.
-                </p>
-                {{ knp_menu_render('sylius.frontend.social', {'template': 'SyliusWebBundle:Frontend:menu.html.twig'}) }}
+                <div class="sticker sticker-sale"></div>
+              </div>
             </div>
-        {% endblock %}
-        </div>
-
+    </div>
+    <!-- END fast view of a product -->
         {# javascripts... #}
         {% block javascripts %}
+    <script src="{{ asset("template/plugins/jquery-1.10.2.min.js")}}" type="text/javascript"></script>
+    <script src="{{ asset("template/plugins/jquery-migrate-1.2.1.min.js")}}" type="text/javascript"></script>
+    <script src="{{ asset("template/plugins/bootstrap/js/bootstrap.min.js")}}" type="text/javascript"></script>      
+    <script type="text/javascript" src="{{ asset("template/plugins/back-to-top.js")}}"></script>
+    <script type="text/javascript" src="{{ asset("template/plugins/jQuery-slimScroll/jquery.slimscroll.min.js")}}"></script>
+    <!-- END CORE PLUGINS -->
 
-            <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-            <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.0.1/js/bootstrap.min.js"></script>
+    <!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
+    <script type="text/javascript" src="{{ asset("template/plugins/fancybox/source/jquery.fancybox.pack.js")}}"></script><!-- pop up -->
+    <script type="text/javascript" src="{{ asset("template/plugins/bxslider/jquery.bxslider.min.js")}}"></script><!-- slider for products -->
+    <script type="text/javascript" src="{{ asset("template/plugins/zoom/jquery.zoom.min.js")}}"></script><!-- product zoom -->
+    <script src="{{ asset("template/plugins/bootstrap-touchspin/bootstrap.touchspin.js")}}" type="text/javascript"></script><!-- Quantity -->
 
-        {% javascripts output='assets/compiled/frontend.js'
-            'bundles/syliusweb/js/jquery.blueimp-gallery.min.js'
-            'bundles/syliusweb/js/confirm-modal.js'
-            'bundles/syliusweb/js/frontend.js'
-        %}
-            <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-        {% endblock %}
+    <!-- BEGIN LayerSlider -->
+    <script src="{{ asset("template/plugins/layerslider/jQuery/jquery-easing-1.3.js")}}" type="text/javascript"></script>
+    <script src="{{ asset("template/plugins/layerslider/jQuery/jquery-transit-modified.js")}}" type="text/javascript"></script>
+    <script src="{{ asset("template/plugins/layerslider/js/layerslider.transitions.js")}}" type="text/javascript"></script>
+    <script src="{{ asset("template/plugins/layerslider/js/layerslider.kreaturamedia.jquery.js")}}" type="text/javascript"></script>
+           
+            {% javascripts output='assets/compiled/frontend.js'
+                'bundles/syliusweb/js/jquery.blueimp-gallery.min.js'
+                'bundles/syliusweb/js/confirm-modal.js'
+                'bundles/syliusweb/js/frontend.js'
+            %}
+                <script type="text/javascript" src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+    {% endblock %}
+   
+    <!-- END LayerSlider -->
+
+    
+
+    {% block slider %}
+    <script type="text/javascript" src="{{ asset("template/scripts/index.js")}}"></script>
+        <script type="text/javascript" src="{{ asset("template/scripts/app.js")}}"></script>
+
+<script type="text/javascript">
+        jQuery(document).ready(function() {
+            App.init();    
+            App.initBxSlider();
+            Index.initLayerSlider();
+            App.initImageZoom();
+            App.initTouchspin();
+        });
+    </script>
+    {% endblock %}
+
     </body>
 </html>

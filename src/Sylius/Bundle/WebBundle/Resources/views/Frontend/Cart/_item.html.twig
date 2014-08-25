@@ -1,19 +1,27 @@
 {% set product = item.variant.product %}
+
 <tr>
-    <td class="col-md-1">{{ loop.index }}</td>
-    <td>
-        {{ include('SyliusWebBundle:Frontend/Product:_variant.html.twig', {'variant': item.variant}) }}
-    </td>
-    <td class="col-md-2">
-        {{ form_row(form.items[loop.index0].quantity, {'label': false}) }}
-    </td>
-    <td class="col-md-1">
-        <a href="{{ path('sylius_cart_item_remove', {'id': item.id}) }}" class="btn btn-danger"><i class="icon-trash icon-white"></i></a>
-    </td>
-    <td class="col-md-1">
-        {{ item.unitPrice|sylius_price }}
-    </td>
-    <td class="col-md-1" style="text-align: right">
-        {{ item.total|sylius_price }}
-    </td>
-</tr>
+                    <td class="shopping-cart-image">
+                       <img src="{{ product.image ? product.image.path|imagine_filter('sylius_small', true) : 'http://placehold.it/90x60' }}" alt="{{ product.name }}" />
+                    </td>
+                    <td class="shopping-cart-description">
+                      <h3><a href="{{ path(product) }}">{{ product.name }}</a></h3>
+                    </td>
+                    <td class="shopping-cart-quantity">
+                      <div class="product-quantity">
+                        {{ form_row(form.items[loop.index0].quantity, {'attr': {'class': 'form-control input-sm'},'label': false}) }}
+                          
+                      </div>
+                    </td>
+                    <td class="shopping-cart-price">
+                      <strong>{{ item.unitPrice|sylius_price }}</strong>
+                    </td>
+                    <td class="shopping-cart-total">
+                      <strong>{{ item.total|sylius_price }}</strong>
+                    </td>
+                    <td class="del-goods-col">
+ <a href="{{ path('sylius_cart_item_remove', {'id': item.id}) }}" class="btn btn-danger del-goods"><i class="fa fa-times"></i></a>
+                    </td>
+                  </tr>
+
+
